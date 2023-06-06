@@ -1,22 +1,41 @@
 {% extends 'core/base.html'%}
+{% load static%}
 {% block title %} Home {% endblock title %}
 {% block content %}
 <div class="container">
-<h3>TODO </h3>
-{% for todo in todo %}
-<p>{{todo.title}}</p>
-<p>{{todo.desc}}</p>
+<h3 class"center-element">TODO </h3>
 
+{% if todo %}
+{% for todo in todo %}
 <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">{{todo.title}}</h5>
-      <p class="card-text">{{todo.desc}}</p>
+      <p class="card-text">{{todo.description}}</p>
+     <p> <small> Added By: {{todo.user.username}} </small></p>
+     {% if request.user.is_superuser or request.user.id == todo.user.id %}
       <a href="{% url 'main_app-delete' id=todo.id %}" class="card-link">Delete</a>
       <a href="{% url 'main_app-edit' id=todo.id %}" class="card-link">Edit</a>
+      {% if todo.is_completed %}
+      <a href="{% url 'main_app-markcomplete' id=todo.id %}" class="card-link">Mark InComplete</a>
+     {% else %}
+      <a href="{% url 'main_app-markcomplete' id=todo.id %}" class="card-link">Mark Complete</a>
+  
+      {% endif %}
+   {% endif %}
     </div>
   </div>
 {% endfor %}
+{% else %}
+<h3>  No Items Found </h3>
+{% endif %}
+
+{% if request.user.id %}
+<div class="center-element">
+ 
 <a href ="{% url 'main_app-add' %}" class="btn btn-primary">Add</a>
 <a href="{% url 'main_app-deleteall' %}" class="btn btn-danger">Delete All</a>
+
+</div>
+{% endif %}
 </div>
 {% endblock content %}
