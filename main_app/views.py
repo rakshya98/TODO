@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from main_app.models import TODO,Person
+from main_app.models import TODO
 from django.contrib.auth.decorators import login_required
-from main_app.forms import PersonForm
+# from main_app.forms import PersonForm
 # Create your views here.
 def home(request):
     todo=TODO.objects.all()
