@@ -10,5 +10,6 @@ urlpatterns = [
     path('edit/<int:id>',views.edit,name='main_app-edit'),
     path('delete-all',views.delete_all,name="main_app-deleteall"),
     path('markcomplete/<int:id>',views.markcomplete ,name='main_app-markcomplete'),
-    path('404/',views.not_found,name='main_app-404')
+    path('404/',views.not_found,name='main_app-404'),
+    # path('person/',views.person)
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
-from main_app.models import TODO
+from main_app.models import TODO,Person
 from django.contrib.auth.decorators import login_required
-
+from main_app.forms import PersonForm
 # Create your views here.
 def home(request):
     todo=TODO.objects.all()
@@ -67,3 +67,26 @@ def markcomplete(request,id):
 
 def not_found(request):
     return render(request,'core/404.html')
+
+
+
+
+# def person(request):
+#    if request.method=='GET':
+#       form=PersonForm()  #form class ko instance created
+#       return render(request,'main_app/person.html',{'form':form})
+#    else:
+#       form=PersonForm(request.POST)
+#       if form.is_valid():
+#         form.save()
+           
+        #  fn=form.cleaned_data['first_name']
+        #  ln=form.cleaned_data['last_name']
+        #  age=form.cleaned_data['age']
+        #  email=form.cleaned_data['email']
+        #  password=form.cleaned_data['password']
+
+        #  Person.objects.create(first_name=fn,last_name=ln,age=age,email=email,password=password)
+
+        
+        # return redirect('main_app-home')

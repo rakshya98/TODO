@@ -15,3 +15,11 @@ class TODO(models.Model):
     class Meta:
         db_table='todo'
         verbose_name_plural="TODOes"
+
+
+# class Person(models.Model):
+#     first_name=models.CharField(max_length=25)
+#     last_name=models.CharField(max_length=25) 
+#     age=models.PositiveIntegerField()
+#     email=models.EmailField()
+#     password=models.CharField(max_length=10,default=None)
